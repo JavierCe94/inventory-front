@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-import { Redirect } from 'react-router';
 import registerServiceWorker from './registerServiceWorker';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
@@ -13,10 +12,10 @@ import {
     setVisibleMenu,
     setToken
 } from './components/actions/actions';
-import todoApp from './components/reducers/reducers';
+import reducers from './components/reducers/reducers';
 
 /*
-const store = createStore(todoApp, {})
+const store = createStore(reducers, {})
 
 // Log the initial state
 console.log(store.getState())
@@ -30,7 +29,7 @@ const unsubscribe = store.subscribe(() =>
 
 const persistedState = loadState();
 const store = createStore(
-    todoApp,
+    reducers,
     persistedState
 );
 store.subscribe(() => {

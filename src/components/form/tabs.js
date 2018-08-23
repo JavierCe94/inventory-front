@@ -9,11 +9,6 @@ class Tabs extends Component {
         key: "1"
     }
 
-    /* Si no se cambia de pestaña, se envía la clave inicial */
-    componentDidMount = () => {
-        //this.props.loginCallback(parseInt(this.state.key) - 1);
-    }
-
     handleSelect(selectedKey) {
         this.setState({ key: selectedKey })
         this.props.loginCallback(parseInt(selectedKey) - 1);

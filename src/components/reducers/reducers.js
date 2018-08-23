@@ -1,22 +1,21 @@
 import { combineReducers } from 'redux';
 import {
     VisibleMenu,
-    SET_VISIBLE_MENU,
     TOKEN
 } from './../actions/actions';
 
 const { MENU_UNLOGGED } = VisibleMenu;
 
-const visibleMenu = (state = MENU_UNLOGGED, action) => {
+const vMenu = (state = MENU_UNLOGGED, action) => {
     switch (action.type) {
-        case SET_VISIBLE_MENU:
+        case VisibleMenu:
             return action.menu;
         default:
             return state;
     }
 }
 
-function token(state = "", action) {
+const token = (state = "", action) => {
     switch (action.type) {
         case TOKEN:
             return action.text
@@ -25,9 +24,9 @@ function token(state = "", action) {
     }
 }
 
-const todoApp = combineReducers({
-    visibleMenu,
+const reducers = combineReducers({
+    vMenu,
     token
 })
 
-export default todoApp;
+export default reducers;

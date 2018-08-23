@@ -5,13 +5,13 @@
   "proxy": "http://localhost:8000",
   "dependencies": {
     "js-cookie": "^2.2.0",
-    "react": "^16.4.0",
-    "react-bootstrap": "^0.32.1",
-    "react-dom": "^16.4.0",
-    "react-images-upload": "^1.0.95",
+    "react": "^16.4.2",
+    "react-bootstrap": "^0.32.3",
+    "react-dom": "^16.4.2",
+    "react-images-upload": "^1.2.1",
     "react-redux": "^5.0.7",
-    "react-router": "^4.2.0",
-    "react-router-dom": "^4.2.2",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
     "react-stringify": "^1.0.0",
     "redux": "^4.0.0"
@@ -21,5 +21,12 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "devDependencies": {
+    "eslint-plugin-react": "^7.11.1"
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ]
 }

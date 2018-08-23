@@ -1,26 +1,23 @@
 import React, { Component } from 'react';
-import { Breadcrumb, Well, Grid, Row, Col, Panel, Button } from 'react-bootstrap';
+import { Breadcrumb, Well, Row, Col, Panel } from 'react-bootstrap';
 import FormBuilder from './../form/formBuilder';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Tabs from './../form/tabs';
-import Menu from './../menu/menu';
 import { setVisibleMenu, VisibleMenu } from './../actions/actions';
 
 class Login extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
             index: 0
         }
-        this.role = "";
 
-        this.formBuilderCallbackForm = this.formBuilderCallbackForm.bind(this);
-    }
-
-    componentWillMount = () => {
         this.parameters = this.props.arrayParametersLogin;
         this.role = this.parameters[this.state.index].value;
+
+        this.formBuilderCallbackForm = this.formBuilderCallbackForm.bind(this);
     }
 
     tabsCallback = (data) => {
@@ -49,7 +46,6 @@ class Login extends Component {
 
     render() {
         return (
-
             <div className="container-fluid">
                 <Breadcrumb className="breadCrumPage">
                     <Breadcrumb.Item onClick={this.breadcrumbHomeCallback}>Inicio</Breadcrumb.Item>

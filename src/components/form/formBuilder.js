@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Fade, Well, FormGroup, FormControl, Button } from 'react-bootstrap';
 import Cookies from "js-cookie";
-import Tabs from './tabs';
 import { connect } from 'react-redux';
 import { setToken } from './../actions/actions';
 
@@ -25,25 +24,17 @@ class FormBuilder extends Component {
             done: false
         }
 
-        this.url = '';
-        this.formControls = '';
-        this.parametersInput = [];
-        this.status = '';
-        this.role = '';
-        this.returnValue = '';
-        this.arr = {};
-    }
-
-    componentWillMount = () => {
         this.role = this.props.role;
         this.setRole(this.role);
         this.parametersInput = this.props.parameters;
         this.url = this.props.url;
-        this.setIndex(this.url);
         this.formControls = this.createFormControls(this.parametersInput);
+        this.status = '';
+        this.returnValue = '';
+        this.arr = {};
     }
 
-    componentWillReceiveProps = (nextProps) => {
+    UNSAFE_componentWillReceiveProps = (nextProps) => {
         this.role = nextProps.role;
         this.setRole(this.role);
         this.parametersInput = nextProps.parameters;
@@ -55,13 +46,6 @@ class FormBuilder extends Component {
         let arrayFormControl = parametersInput.map((param, i) =>
             <FormControl className="formFile" key={i} type={param.tx} name={param.key} placeholder={param.phrase} required/>);
         return arrayFormControl;
-    }
-
-    setIndex = (url) => {
-        switch (url) {
-            case "/pet/insertPet":
-                break;
-        }
     }
 
     setRole = (role) => {
@@ -100,11 +84,6 @@ class FormBuilder extends Component {
             .then((response) => {
                 let status = response.status;
                 if (200 === status) {
-                    /*
-                    if (null === Cookies.get("token") || undefined === Cookies.get("token")) {
-                        this.setState({tokenReceived : true});
-                    }
-                    */
                     if (this.props.token === "") {
                         this.setState({tokenReceived : true});
                     }
@@ -122,7 +101,7 @@ class FormBuilder extends Component {
                 if (this.state.tokenReceived) {
                     this.props.dispatch(setToken(output));
                     this.setState({tokenReceived: false, output : "Login correcto"});
-                } else {this.setState({ output: output });}
+                } else {this.setState({ output: output.message });}
                 this.setState({ outputbool: true });
             })
     }

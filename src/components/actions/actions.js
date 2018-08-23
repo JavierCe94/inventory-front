@@ -1,13 +1,3 @@
-/*
- * action types
- */
-
-export const SET_VISIBLE_MENU = 'SET_VISIBLE_MENU';
-
-/*
- * other constants
- */
-
 export const VisibleMenu = {
     MENU_ADMIN: 'MENU_ADMIN',
     MENU_USER: 'MENU_USER',
@@ -17,7 +7,7 @@ export const VisibleMenu = {
 export const TOKEN = 'TOKEN';
 
 export const setVisibleMenu = (menu) => {
-    return { type: SET_VISIBLE_MENU, menu }
+    return { type: VisibleMenu, menu }
 }
 
 export function setToken(text) {

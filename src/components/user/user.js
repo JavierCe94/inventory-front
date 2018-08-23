@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
-import Menu from './../menu/menu';
-import Main from '../main';
-import Cookies from "js-cookie";
-import { Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { setToken } from './../actions/actions';
 
 class User extends Component {
     constructor(props) {
@@ -12,16 +7,13 @@ class User extends Component {
         this.state = {
             token: ""
         }
-        // this.onLoginIn = this.onLoginIn.bind(this);
     }
 
     render() {
         return (
-            <div>
-                <h1>Pagina User</h1>
-                <Button onClick={() => this.setState({token: this.props.token})}>Mostrar token</Button>
-                <p>token: {this.state.token}</p>
-
+            <div className="container-fluid">
+                <h2>Gestion prendas trabajador</h2>
+                <p>Selecccione <strong>Solicitudes</strong> en el menú superior para acceder a la gestion de vestuario. Puede solicitar prendas y ver estado de las solicitudes</p>
             </div>
         )
     }
