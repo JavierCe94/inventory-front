@@ -53,7 +53,7 @@ class Menu extends Component {
                         {
                             (this.props.visibleMenu === 'MENU_USER') &&
                             <Nav className="container-fluid navLogin">
-                                <NavItem onClick={() => this.props.history.push('/login')}>
+                                <NavItem onClick={() => this.props.history.push('/requests-user')}>
                                     Solicitudes
                                 </NavItem>
                             </Nav>

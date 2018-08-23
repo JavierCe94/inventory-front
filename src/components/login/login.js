@@ -57,7 +57,7 @@ class Login extends Component {
                         <Well>
                             <h2>Introduce tu nombre de usuario y contraseña</h2>
                             <hr className="divider" />
-                            <h4>Si no tienes cuenta de usuario puedes crearte una acciendo click en el botón registrar</h4>
+                            <h4>Selecciona la pestaña correspondiente en función de si eres usuario o administrador</h4>
                             <br />
                         </Well>
 

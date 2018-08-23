@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Fade, Well, FormGroup, FormControl, Button } from 'react-bootstrap';
-import Cookies from "js-cookie";
 import { connect } from 'react-redux';
 import { setToken } from './../actions/actions';
 
@@ -42,9 +41,48 @@ class FormBuilder extends Component {
         this.formControls = this.createFormControls(this.parametersInput);
     }
 
-    createFormControls = (parametersInput) => {
-        let arrayFormControl = parametersInput.map((param, i) =>
-            <FormControl className="formFile" key={i} type={param.tx} name={param.key} placeholder={param.phrase} required/>);
+    createFormControls = (parametersInput, textArea) => {
+        console.log(parametersInput);
+        let arrayFormControl = parametersInput.map((param, i) => {
+
+                /* Si el campo es un select */
+                if (param.tx === "select") {
+
+                    return <div key={i}><strong>{param.phrase}:&nbsp;</strong>
+                        <FormControl
+                            className="formFile"
+                            componentClass={param.tx}
+                            name={param.key}
+                            key={i}
+                            placeholder={param.phrase}
+                            required>
+                            {param.options.map((opt, j) =>
+                                <option key={j} value={opt}>{opt}</option>
+                            )
+                            }
+                        </FormControl></div>
+                }
+
+                /* Si no es un select, se crea un input normal
+                   FormControl es una etiqueta de ReactBootstrap,
+                   pero por debajo es un input de HTML */
+
+                return <div key={i}>
+                    <FormControl
+                        className="formFile"
+                        key={i} type={param.tx}
+                        name={param.key}
+                        placeholder={param.phrase}
+                        required />
+                </div>
+            }
+        );
+
+        /* Si es un textArea, se trata aparte */
+        if (textArea !== undefined) {
+            this.thereIsTextArea = true;
+            arrayFormControl[arrayFormControl.length] = <FormControl className="formFile" componentClass={textArea[0].tx} key={arrayFormControl.length} name={textArea[0].key} placeholder={textArea[0].phrase} required />;
+        }
         return arrayFormControl;
     }
 
@@ -65,8 +103,6 @@ class FormBuilder extends Component {
         e.preventDefault();
 
         (this.parametersInput).map((types, i) => this.arr[types.key] = e.target[types.key]["value"]);
-
-        console.log(this.arr);
 
         let user = e.target[0]["value"];
 
